@@ -1,0 +1,57 @@
+@import url("main.css");
+
+.item-card{
+    padding: 20px 30px;
+    height:fit-content;
+    overflow:hidden;
+    box-shadow: 0px 5px 5pt -5pt #8a8a8a;
+}
+
+.menu-content{
+    height:fit-content;
+    position: relative;
+    justify-content: center;
+    margin: 0 auto;
+    width:500px;
+}
+.item-name, .item-price{
+    margin: 0px 50px 10px 0px;
+    font-size: 20px;
+    text-transform:capitalize;
+    float: left;
+    padding: 5px;
+}
+
+.item-price{
+    background-color: #D18E2A;
+    border-radius: 4px;
+    color:white;
+    
+}
+
+img {
+    border-radius: 10%;
+    object-fit: cover;
+    width: 120px;
+    height: 120px;
+    float: right;
+}
+
+.floating-button{
+    font-weight:bold;letter-spacing: 2px;position:fixed; bottom:0; width:100%; margin: 100px auto; text-align:center;
+}
+
+@media screen and (max-width: 900px){
+    .menu-content {
+        width:100%;
+    }
+    .floating-button{
+        width:100%; 
+        margin: 150px auto;
+    }
+    input[type="number"]{
+        font-size: 18px;
+    }
+}
+
+  

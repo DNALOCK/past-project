@@ -1,0 +1,85 @@
+
+.content-card {
+  min-height: 100vh;
+  position: relative;
+  justify-content: center;
+  height: 100%; width:870px;
+  margin:auto;
+  background-color: #f2f2f2;
+}
+
+form{
+  padding:0px
+}
+@media(max-width: 900px){
+  .content-card {
+    width:100%;
+  }
+  header{
+    width:100%
+  }
+}
+th, td {
+  padding: 15px 0px;
+  text-align: center;
+  font-size: large;
+}
+th{
+  font-size:x-large;
+}
+td{
+  border-top: 1px solid black;
+}
+table{
+  border-radius:15pt;
+  background-color: #fff;
+  margin:auto;
+  width:50%;
+  border: 1px solid black;
+}
+
+table tr:hover{
+  font-weight: bold;
+}
+
+tr:first-child:hover {
+  background-color: transparent;
+}
+
+table tr:hover a{
+  color:#FFAD12
+}
+
+button, input[type=submit] {
+  font-size:20px;
+  text-align: center;
+  background-color: #FFAD12;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 20px;
+}
+
+
+button:hover, input[type=submit]:hover {
+  background-color:#D18E2A;
+}
+
+
+@media screen and (max-width: 900px){
+  .content-card {
+    width:100%;
+  }
+}
+
+@media screen and (max-width: 450px){
+  
+  button, input[type=submit]  {
+    font-size:20 px;
+  }
+  button, input[type=submit]{
+    padding: 6px 10px;
+  }
+}

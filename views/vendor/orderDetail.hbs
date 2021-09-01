@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/orderDetail.css">
+
+<div class='content-card'>
+    <div style='padding:30px'>
+        <h2 style="text-align: center;">ORDER #{{order.order_ID}}</h2>
+        <input type="hidden" name ="timeRemaining" id= "timeRemaining" value={{timeRemaining}}>
+        <div class='details-card' style='display:block'>
+            <div style='display: inline-block; float:left'><p style='font-weight:bold; margin:5px'>Customer Name:</p><p>{{order.customerGivenName}}</p></div>
+            {{#if hasTimeLeft}}
+                <div style='display: inline-block;float:right'><p style='font-weight:bold; margin:5px'>Time Remaining:</p><p><span id = "time">15:00</span></p></div><br>
+            {{else}}
+                <div style='display: inline-block;float:right'><p style='font-weight:bold; margin:5px'>Time Remaining:</p><p>00:00</p></div><br>
+            {{/if}}
+            <div style='text-align:center;height:fit-content;margin:10px'><p style='font-weight:bold;margin:10px'>STATUS:</p><br><p style='font-size:xx-large; margin:10px'>{{order.status}}</p></div>
+        </div>
+        <spacer>&nbsp;</spacer>
+        <table>
+                <tr><th>Food Name</th> <th>Unit Price</th> <th>Quantity</th></tr>
+                {{#each order.orderItems}}
+                    <tr> <td>{{this.item_name}}</td> <td>{{this.price}}</td> <td>{{this.quantity}}</td> </tr>
+                {{/each}}
+        </table>
+        <spacer>&nbsp;</spacer>
+
+        <div class='details-card' style='padding:20px'>
+            <div><p style='display:inline' class='title'>Payment Summary</p></div>
+            <div><p style='font-weight:unset; margin:5px'>Late Fulfillment Discount: {{order.late_fulfillment}}</p><br></div>
+            {{#if hasTimeLeft}}
+                <div><p style='font-weight:unset; margin:5px'>Total: ${{totalPayment}}</p></div>
+            {{else}}
+                <div><p style='font-weight:unset; margin:5px'>Total: ${{totalPayment}}</p></div>
+            {{/if}}
+        </div>
+
+        {{#if isUnfulfilled}}
+            <div style='display:block; text-align:center; justify-content: center'>
+                <form style='display:inline-block' action="/vendor/orders/{{order.order_ID}}/fulfilled" method="POST">
+                    <input class='normal-button' style='background-color: green; font-size:20px;text-transform:uppercase' type="submit" value="Mark as Fulfilled">
+                    {{#if hasTimeLeft}}
+                        <input type="hidden" name = "lateFulfillment" id ="lateFulfillment" value = "false">
+                    {{else}}
+                        <input type="hidden" name = "lateFulfillment" id ="lateFulfillment" value = "true">
+                    {{/if}}
+                </form>
+            </div>
+        {{/if}}
+        {{#if isFulfilled}}
+            <div style='display:block; text-align:center; justify-content: center'>
+                  <form style='display:inline-block' action="/vendor/orders/{{order.order_ID}}/complete" method="POST">
+                    <input class='normal-button' style='font-size:20px; text-transform:uppercase'type="submit" value="Mark as Complete">
+                </form>
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+<script>
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var time = document.getElementById("timeRemaining").value,
+            display = document.querySelector('#time');
+        startTimer(time, display);
+    };
+</script>

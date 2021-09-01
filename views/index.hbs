@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="/css/profile.css">
+<style>
+    header{
+        display:none;
+    }
+    .normal-button{
+        background: #4a6b0c;
+        text-align: center;
+        width: 149px;
+        height: 149px;
+        border-radius: 100%;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 35px;
+        color: white;
+        font-weight: bold;
+        text-decoration: none
+    }
+    .normal-button:hover{
+        background: #97c83e;
+    }
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .flex-item-left {
+        padding: 10px;
+        flex: 50%;
+    }
+
+    .flex-item-right {
+        padding: 10px;
+        flex: 50%;
+    }
+    img.icon{
+        height:100px;
+    }
+    img.icon:hover{
+        height:150px;
+    }
+    @media (max-width: 450px) {
+        .flex-container {
+            flex-direction: column;
+        }
+    }
+</style>
+<div class='content-card' style='text-align:center;'>
+    <div class='container'><img class='icon' src='/css/images/icon.png'></div>
+    <h1 style='text-align:center; padding:30px'>You Are A:</h1>
+    <div class='flex-container'>
+        <div class='flex-item-left'>
+            <div class='button'><a class='normal-button' href="/vendor/login">VENDOR</a></div>
+        </div>
+        <div class='flex-item-right'>
+            <div class='button'><a class='normal-button' href="/customer/home">CUSTOMER</a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function geoFindMe() {
+        function success(position) {
+            document.getElementById("latitude").value = position.coords.latitude; 
+            document.getElementById("longitude").value = position.coords.longitude;
+        }
+
+        function error() {
+            status.textContent = 'Unable to retrieve your location';
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+</script>

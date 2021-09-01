@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/menu.css">
+<div class='content-card'>
+    <h2 style="text-align: center;">MENU</h2>
+    <h3 style="text-align: center;">{{this.van_id}}</h3>
+    <div class='menu-content'>
+        {{#each menu_items}}
+        <div class="item-card">
+            <p class='item-name'>{{this.item_name}}</p>
+            <p class='item-price'>$ {{this.item_price}}</p>
+            <img src={{this.item_photo}} class="browsePage">
+        </div>
+        {{/each}}
+    </div>
+
+</div>
+<div class='floating-button'> 
+{{#if loggedin}} 
+<a class='normal-button' href="/customer/van/{{van.van_ID}}/menu/order">START ORDER</a>
+{{else}}
+<a class='normal-button' style='background-color:#474747ce' href="/customer/login">SIGN IN TO ORDER</a>
+{{/if}}
+</div>
+

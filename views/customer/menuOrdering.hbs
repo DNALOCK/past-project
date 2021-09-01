@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/menu.css">
+<style>
+   div div div button.normal-button{
+       background-color: gray;
+   }
+</style>
+<div class='content-card'>
+    <h2 style="text-align: center;">ORDER</h2>
+    <h3 style="text-align: center;">{{this.van_id}}</h3>
+    <div class='menu-content'>
+        {{#each menu_items}}
+            <div class="item-card">
+                <p class='item-name'>{{this.item_name}}</p>
+                <p class='item-price'>$ {{this.item_price}}</p>
+                <img src={{this.item_photo}} class="browsePage">
+            <input type="number" min="0" oninput="this.value =this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" id={{this.item_ID}} value="" placeholder = "0"/>
+            <button class='normal-button' style= 'padding:5px;' type='button' onclick="saveToCart({{this.item_ID}})">ADD TO CART</button>
+            </div>
+        {{/each}}
+    </div>
+</div>
+       
+<form class="cart-form" id="cart-form" action="/customer/van/{{van_id}}/menu/order/payment" method="post">
+    <input type = "hidden" id="cart" name="cart" value="">
+    <div class='floating-button'><button class='normal-button' type="button" onclick="saveOrder()">Make Order</button></div>
+</form>
+<script >
+    function saveToCart(id) {
+        var quantity = parseInt(id.value)
+        if (localStorage.getItem("cart") === null) {
+            var cart = [];
+            for (var i=0;i<quantity;i++) { 
+                cart.push(id.id);
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+            var currentCart = JSON.parse(localStorage.getItem("cart"));
+            for (var i=0;i<quantity;i++) {
+                currentCart.push(id.id);
+            }
+            localStorage.setItem("cart", JSON.stringify(currentCart));
+        }
+    }
+
+    function saveOrder() {
+        if (localStorage.getItem("cart") === null) {
+            return;
+        } else {
+            document.getElementById("cart").value = JSON.parse(JSON.stringify(localStorage.getItem("cart")));
+            localStorage.clear();
+            document.getElementById("cart-form").submit();    
+        }
+    }
+</script>

@@ -1,0 +1,93 @@
+@import url("main.css");
+p{
+  margin:5px;
+}
+.details-card{
+  font-size:18px;
+  padding:5px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.order-card{
+  padding:30px;
+}
+p.title{
+  font-size: large;
+  font-weight: bold;
+}
+.detail-card div{
+  display:inline-block;
+}
+
+table{
+  border-radius:15pt;
+  background-color: #fff;
+  margin:auto;
+  width:50%;
+  border: 1px solid grey;
+}
+
+th, td {
+  padding: 15px 15px;
+  text-transform: capitalize;
+}
+
+th{
+  font-size:x-large;
+  text-align: center;
+}
+
+td{
+  text-align: center;
+  font-size: large;
+  border-top: 1px solid grey;
+}
+
+
+.bottom-buttons{
+  width: 100%;
+  padding:15px;
+  display: inline-block;
+  font-size: 24px;
+  font-weight:bold;
+  text-transform:capitalize;
+}
+
+.bottom-button{
+  padding:0px 30px;
+  border-radius:5pt;
+  text-align:center;
+}
+
+.bottom-button.change{
+  background-color:#FFAD12;
+  color:white
+}
+.bottom-button.cancel{
+  
+  background-color:white;
+  color:black;
+
+}
+.bottom-button.inactive{
+  background-color:gray;
+  color:white
+}
+
+
+.bottip {
+  font-size:40px;
+  padding:20px 0px;
+  background-color:#FFAD12;
+  justify-content: center;
+  color:white;
+  position:fixed; bottom:0; width:900px; margin: auto; text-align:center;
+}
+
+@media screen and (max-width:900px){
+  .bottip {
+    width:100%;
+  }
+}
+

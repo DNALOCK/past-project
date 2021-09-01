@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<div class='content-card'>
+    <h2 style="text-align: center;">Click a van to Order!</h2>
+    <h3 style="text-align: center;">Please [Share your location] first, and click [Update] to get the vans near you!</h2>
+
+
+    <form method="post" action="/customer/home" id="locationform" style='text-align:center'>
+        <input type="hidden" name="latitude" id="latitude" value=""/>
+        <input type="hidden" name="longitude" id="longitude" value=""/>
+
+    <button type="button" onclick="shareLoc()">Share My Location</button><input type="submit" value='Update'></button>
+    </form>
+    <spacer>&nbsp;</spacer>
+    <table>
+        <th>Van ID</th>
+        <th>Van Name</th>
+        {{#each van}}
+            <tr class="li-wrap">
+                <td><a style='text-decoration:none' href="/customer/van/{{this.van_ID}}">{{this.van_ID}}</a></td>
+                <td><a style='text-decoration:none' href="/customer/van/{{this.van_ID}}">{{this.van_first_name}} {{this.van_last_name}}</a></td>
+            </tr>
+        {{/each}}
+    </table>
+</div>
+
+<script>
+async function shareLoc() {
+    function success(position) {
+        document.getElementById("latitude").value = position.coords.latitude; 
+        document.getElementById("longitude").value = position.coords.longitude; 
+    }
+
+    function error() {
+        status.textContent = 'Unable to retrieve your location';
+    }
+
+    await navigator.geolocation.getCurrentPosition(success, error);
+}
+</script>
